@@ -1,0 +1,1 @@
+This project attempts to create a rock, paper, scissors game that is fully functional, using javascript. 
