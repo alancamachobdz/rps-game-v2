@@ -15,22 +15,25 @@ function computerPlay() {
      break;
   }               
 };
-
+let computerSelection = null;
+let playerSelection = '';
 // THIS FUNCTION plays a single round of the game.
-const computerSelection = computerPlay();
-function playRound(e, computerSelection) {
-    if (e.target.id === 'rock-btn') {
-        playerSelection = 'rock';
+function playRound(event, computerSelection) {
+    if (event !== undefined) {
+        if (event.target.id === 'rock-btn') {
+            playerSelection = 'rock';
+        }
+        if (event.target.id === 'paper-btn') {
+            playerSelection = 'paper';
+        }
+        if (event.target.id === 'scissors-btn') {
+            playerSelection = 'scissors';
+        }
+        console.log(`You selected ${playerSelection}!`);
     }
-    if (e.target.id === 'paper-btn') {
-        playerSelection = 'paper';
-    }
-    if (e.target.id === 'scissors-btn') {
-        playerSelection = 'scissors';
-    }
-    console.log(`You selected ${playerSelection}!`);
     let result;
     playerSelection = playerSelection.toLowerCase();
+    computerSelection = computerPlay();
     if (playerSelection == undefined) {
         console.log('playerSelection is undefine');
     }
@@ -55,11 +58,11 @@ function playRound(e, computerSelection) {
             return 2;
         }
     } if (playerSelection == 'paper') {
-        if (computerSelection = 'rock') {
+        if (computerSelection == 'rock') {
             console.log('You won! Paper beats Rock');
             return 1;
         } else {
-            console.log('You lost! Rock beats Scissors')
+            console.log('You lost! Rock beats Paper')
             return 2;
         }
     }    
@@ -72,4 +75,4 @@ paperBtn.addEventListener('click', playRound);
 const scissorsBtn = document.querySelector('#scissors-btn');
 scissorsBtn.addEventListener('click', playRound);
 
-playRound();
+playRound(event, computerSelection);
