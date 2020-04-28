@@ -15,10 +15,12 @@ function computerPlay() {
      break;
   }               
 };
-let computerSelection = null;
+
+let computerSelection = '';
 let playerSelection = '';
 // THIS FUNCTION plays a single round of the game.
 function playRound(event, computerSelection) {
+    // When button is pressed:
     if (event !== undefined) {
         if (event.target.id === 'rock-btn') {
             playerSelection = 'rock';
@@ -31,43 +33,47 @@ function playRound(event, computerSelection) {
         }
         console.log(`You selected ${playerSelection}!`);
     }
-    let result;
+    // After player selects, run game
+   
     playerSelection = playerSelection.toLowerCase();
     computerSelection = computerPlay();
+    const container = document.querySelector('#results');
+    container.classList.add('result');
+
     if (playerSelection == undefined) {
-        console.log('playerSelection is undefine');
+        console.log('playerSelection is undefined');
     }
     if (playerSelection == computerSelection) {
-        console.log('Tie!');
+        container.textContent = 'Tie!';
         return 0;
     }
     if (playerSelection == 'rock') {
         if (computerSelection == 'scissors') {
-            console.log('You won! Rock beats Scissors');
+            container.textContent = 'You won! Rock beats Scissors';
             return 1;             
         } else {
-            console.log('You lost! Paper beats Rock')
+            container.textContent = 'You lost! Paper beats Rock';
             return 2;
         }
     } if (playerSelection == 'scissors') {
         if (computerSelection == 'paper') {
-            console.log('You won! Scissors beats Paper');
+            container.textContent = 'You won! Scissors beats Paper';
             return 1;
         } else {
-            console.log('You lost! Paper beats Rock');
+            container.textContent = 'You lost! Paper beats Rock';
             return 2;
         }
     } if (playerSelection == 'paper') {
         if (computerSelection == 'rock') {
-            console.log('You won! Paper beats Rock');
+            container.textContent = 'You won! Paper beats Rock';
             return 1;
         } else {
-            console.log('You lost! Rock beats Paper')
+            container.textContent = 'You lost! Rock beats Paper';
             return 2;
         }
-    }    
+    } 
 };
-
+// Declares buttons
 const rockBtn = document.querySelector('#rock-btn');
 rockBtn.addEventListener('click', playRound);
 const paperBtn = document.querySelector('#paper-btn');

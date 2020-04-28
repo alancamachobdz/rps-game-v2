@@ -13,3 +13,7 @@ button {
     background-color: black;
     align-items: center;
 }
+
+#results {
+    margin-top: 70px
+}
