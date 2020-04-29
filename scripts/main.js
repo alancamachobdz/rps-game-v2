@@ -1,4 +1,3 @@
-let playerScore = 0;
 
 // THIS FUNCTION is the computer playing.
 function computerPlay() {
@@ -73,6 +72,18 @@ function playRound(event, computerSelection) {
         }
     } 
 };
+// THIS function plays the game 5 times and determines a winner.
+function playGame() {
+    let playerScore = 0;
+let computerScore = 0;
+    for (let i = 0; i < 5; i++) {
+       if(playRound == 1) {
+           console.log(playerScore++);
+       } else if (playRound == 2) {
+           console.log(computerScore++);
+       }
+    }
+};
 // Declares buttons
 const rockBtn = document.querySelector('#rock-btn');
 rockBtn.addEventListener('click', playRound);
@@ -81,4 +92,4 @@ paperBtn.addEventListener('click', playRound);
 const scissorsBtn = document.querySelector('#scissors-btn');
 scissorsBtn.addEventListener('click', playRound);
 
-playRound(event, computerSelection);
+playGame();
