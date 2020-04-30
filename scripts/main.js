@@ -1,4 +1,5 @@
 let playerScore = 0;
+let computerScore = 0;
 
 // THIS FUNCTION is the computer playing.
 function computerPlay() {
@@ -40,39 +41,40 @@ function playRound(event, computerSelection) {
     const container = document.querySelector('#results');
     container.classList.add('result');
 
-    if (playerSelection == undefined) {
-        console.log('playerSelection is undefined');
-    }
     if (playerSelection == computerSelection) {
         container.textContent = 'Tie!';
-        return 0;
+        return;
     }
     if (playerSelection == 'rock') {
         if (computerSelection == 'scissors') {
-            container.textContent = 'You won! Rock beats Scissors';
-            return 1;             
+            container.textContent = 'The computer chose scissors YOU WON!';
+            playerScore++;
         } else {
-            container.textContent = 'You lost! Paper beats Rock';
-            return 2;
+            container.textContent = 'The computer chose scissors YOU LOST!';
+            computerScore++;
         }
     } if (playerSelection == 'scissors') {
         if (computerSelection == 'paper') {
-            container.textContent = 'You won! Scissors beats Paper';
-            return 1;
+            container.textContent = 'The computer chose paper YOU WON!';
+            playerScore++;
         } else {
-            container.textContent = 'You lost! Paper beats Rock';
-            return 2;
+            container.textContent = 'The computer chose paper YOU LOST!';
+            computerScore++;
         }
     } if (playerSelection == 'paper') {
         if (computerSelection == 'rock') {
-            container.textContent = 'You won! Paper beats Rock';
-            return 1;
+            container.textContent = 'The computer chose rock YOU WON!';
+            playerScore++;
         } else {
-            container.textContent = 'You lost! Rock beats Paper';
-            return 2;
+            container.textContent = 'The computer chose rock YOU LOST!';
+            computerScore++;
         }
-    } 
-};
+    }
+    const yourScore = document.querySelector('#theScore');
+    yourScore.textContent = playerScore;
+    const compScore = document.querySelector('#theCompScore');
+    compScore.textContent = computerScore;
+ };
 // Declares buttons
 const rockBtn = document.querySelector('#rock-btn');
 rockBtn.addEventListener('click', playRound);
